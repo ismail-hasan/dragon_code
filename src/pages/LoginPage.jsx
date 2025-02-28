@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../ContextProvider/AuthProvider';
 
 const LoginPage = () => {
-
+    const [error, setError] = useState({})
     const { signInUser, setUser } = useContext(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
+
+
+
     const handleLogIn = (e) => {
         e.preventDefault()
         const form = new FormData(e.target)
@@ -18,10 +22,12 @@ const LoginPage = () => {
             .then(result => {
                 const user = result.user
                 setUser(user)
-                navigate("/")
+                navigate(location?.state ? location.state : "/")
                 console.log(user)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setError(...error, err.message)
+            })
 
     }
     return (
@@ -44,6 +50,10 @@ const LoginPage = () => {
                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                     </label>
                 </div>
+                {
+                    error &&
+                    <p>{error.message}</p>
+                }
                 <div>
                     <p className='text-sm'>alrady login here to <Link to={"/auth/register"}>Register</Link> </p>
                 </div>

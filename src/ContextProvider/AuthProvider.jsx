@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import auth from "../FireaBase/FireBase.Config";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 
 // Create AuthContext
 export const AuthContext = createContext();
@@ -37,7 +37,23 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-    const authInfo = { user, setUser, createNewUser, signInUser, logOut, loader };
+    const updateUserProfile = (updateData) => {
+        return updateProfile(auth.currentUser, updateData)
+    }
+
+
+    const authInfo =
+    {
+        user,
+        setUser,
+        createNewUser,
+        signInUser,
+        logOut,
+        loader,
+        updateUserProfile
+    };
+
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
