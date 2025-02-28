@@ -10,7 +10,7 @@ const NewsDetails = () => {
     const detailsData = data.data[0]
 
     const { author, details, image_url } = detailsData
-    console.log("my", author)
+    // console.log("my", author)
     return (
 
         <div>

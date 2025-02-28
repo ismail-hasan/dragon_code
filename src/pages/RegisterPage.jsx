@@ -14,7 +14,7 @@ const RegisterPage = () => {
         const photo = form.get("photo")
         const email = form.get("email")
         const password = form.get("password")
-        console.log({ name, photo, email, password })
+        // console.log({ name, photo, email, password })
 
         createNewUser(email, password)
             .then(result => {
@@ -24,13 +24,13 @@ const RegisterPage = () => {
                     .then(() => {
                         navigate("/")
                     })
-                    .catch(err => console.log("fullName", err))
+                    // .catch(err => console.log("fullName", err))
             })
-            .catch(error => console.log(error))
+            // .catch(error => console.log(error))
 
         logOut()
-            .then(console.log("sginOUt success"))
-            .catch(err => console.log(err))
+            .then()
+        // .catch(err => console.log(err))
     };
 
 

@@ -15,7 +15,7 @@ const LoginPage = () => {
         const form = new FormData(e.target)
         const email = form.get("email")
         const password = form.get("password")
-        console.log({ email, password })
+        // console.log({ email, password })
 
 
         signInUser(email, password)
@@ -23,7 +23,7 @@ const LoginPage = () => {
                 const user = result.user
                 setUser(user)
                 navigate(location?.state ? location.state : "/")
-                console.log(user)
+                // console.log(user)
             })
             .catch(err => {
                 setError(...error, err.message)
